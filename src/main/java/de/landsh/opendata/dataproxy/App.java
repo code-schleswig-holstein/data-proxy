@@ -4,7 +4,7 @@ import fi.iki.elonen.router.RouterNanoHTTPD;
 import fi.iki.elonen.util.ServerRunner;
 
 public class App extends RouterNanoHTTPD {
-    public static final int PORT = 8080;
+    public static final int PORT = 8081;
 
     @Override
     public void addMappings() {
