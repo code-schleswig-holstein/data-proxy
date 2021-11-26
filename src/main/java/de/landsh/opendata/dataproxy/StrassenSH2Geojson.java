@@ -61,7 +61,7 @@ public class StrassenSH2Geojson implements RouterNanoHTTPD.UriResponder {
         final JSONArray coordinates = feature.getJSONArray("coordinates");
 
         result.put("properties", properties);
-        result.put("id", coordinates.hashCode());
+        // result.put("id", coordinates.hashCode());
         geometry.put("type", type);
         geometry.put("coordinates", coordinates);
         result.put("geometry", geometry);
