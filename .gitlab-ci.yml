@@ -15,5 +15,5 @@ build:
   script: "mvn clean package -B"
   artifacts:
     paths:
-      - target/*.jar
+      - target/*-jar-with-dependencies.jar
 
