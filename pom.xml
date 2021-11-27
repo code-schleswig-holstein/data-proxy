@@ -13,6 +13,7 @@
         <jena.version>4.2.0</jena.version>
     </properties>
     <build>
+        <finalName>data-proxy</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -26,7 +27,7 @@
             <plugin>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
-                <version>4.5</version>
+                <version>4.9.3</version>
                 <executions>
                     <execution>
                         <goals>
@@ -85,7 +86,14 @@
         <dependency>
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-runtime</artifactId>
-            <version>4.5</version>
+            <version>4.9.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

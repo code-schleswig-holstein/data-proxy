@@ -1,26 +1,57 @@
 package de.landsh.opendata.dataproxy;
 
-import fi.iki.elonen.router.RouterNanoHTTPD;
+import fi.iki.elonen.NanoHTTPD;
 import fi.iki.elonen.util.ServerRunner;
 
-public class App extends RouterNanoHTTPD {
-    public static final int PORT = 8081;
+public class App extends NanoHTTPD {
+    public static  int port = 8080;
 
-    @Override
-    public void addMappings() {
-        super.addMappings();
-        addRoute("/strassen-sh.geojson", StrassenSH2Geojson.class);
-        addRoute("/corona-rd-eck.json", CoronaRdEck.class);
-
-    }
+    private final StrassenSH strassenSH = new StrassenSH();
+    private final CoronaRdEck coronaRdEck = new CoronaRdEck();
 
     public App() {
-        super(PORT);
-        addMappings();
-        System.out.println("\nRunning! Point your browser to http://localhost:" + PORT + "/ \n");
+        super(port);
+        System.out.println("\nRunning! Point your browser to http://localhost:" + port + "/ \n");
     }
 
     public static void main(String[] args) {
+
+        if( args.length > 0) {
+            try {
+                App.port = Integer.parseInt(args[0]);
+            } catch (NumberFormatException ignore) {
+                System.err.println("Usage: java -jar data-proxy.jar [PORT]");
+                System.exit(1);
+            }
+        }
+
         ServerRunner.run(App.class);
+    }
+
+    @Override
+    public Response serve(IHTTPSession session) {
+
+        final CachingDataResponser responder;
+        if ("/strassen-sh.geojson".equals(session.getUri())) {
+            responder = strassenSH;
+        } else if ("/corona-rd-eck.json".equals(session.getUri())) {
+            responder = coronaRdEck;
+        } else {
+            responder = null;
+        }
+
+        if (responder == null) {
+            return newFixedLengthResponse(Response.Status.NOT_FOUND, "text/plain", "Not Found");
+        } else {
+            if (session.getMethod() == Method.GET) {
+                return responder.get();
+            } else if (session.getMethod() == Method.HEAD) {
+                return responder.head();
+            } else {
+                return newFixedLengthResponse(Response.Status.METHOD_NOT_ALLOWED, "text/plain", "Method not allowed");
+
+            }
+        }
+
     }
 }

@@ -12,7 +12,7 @@ pair:  NAME ':' VALUE ;
 
 NAME:  [a-z_]+ ;
 WS  :   [ \t\r\n]+ -> skip ; // Define whitespace rule, toss it out
-QUOTE:   [\'\"] ;
+QUOTE:   ['"] ;
 ARS:   '010' [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9] ;
 VALUE:  [0-9]+ '.'? [0-9]* ;
 

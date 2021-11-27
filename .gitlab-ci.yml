@@ -15,5 +15,5 @@ build:
   script: "mvn clean package -B"
   artifacts:
     paths:
-      - target/*-jar-with-dependencies.jar
+      - target/data-proxy-jar-with-dependencies.jar
 
