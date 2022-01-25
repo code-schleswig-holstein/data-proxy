@@ -1,10 +1,11 @@
 package de.landsh.opendata.dataproxy;
 
 import fi.iki.elonen.NanoHTTPD;
-import fi.iki.elonen.util.ServerRunner;
+
+import java.io.IOException;
 
 public class App extends NanoHTTPD {
-    public static  int port = 8080;
+    public static int port = 8080;
 
     private final StrassenSH strassenSH = new StrassenSH();
     private final CoronaRdEck coronaRdEck = new CoronaRdEck();
@@ -14,9 +15,9 @@ public class App extends NanoHTTPD {
         System.out.println("\nRunning! Point your browser to http://localhost:" + port + "/ \n");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        if( args.length > 0) {
+        if (args.length > 0) {
             try {
                 App.port = Integer.parseInt(args[0]);
             } catch (NumberFormatException ignore) {
@@ -25,7 +26,7 @@ public class App extends NanoHTTPD {
             }
         }
 
-        ServerRunner.run(App.class);
+        new App().start(5000, false);
     }
 
     @Override
