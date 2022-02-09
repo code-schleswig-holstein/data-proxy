@@ -8,6 +8,7 @@ cache:
 
 stages:
   - build
+  - test
 
 build:
   stage: build
@@ -17,3 +18,7 @@ build:
     paths:
       - target/data-proxy-jar-with-dependencies.jar
 
+test:
+  stage: test
+  image: maven:3-openjdk-11
+  script: "mvn verify -B"
