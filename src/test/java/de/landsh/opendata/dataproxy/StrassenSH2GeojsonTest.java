@@ -2,9 +2,10 @@ package de.landsh.opendata.dataproxy;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class StrassenSH2GeojsonTest {
 
@@ -19,7 +20,7 @@ public class StrassenSH2GeojsonTest {
 
         assertTrue(result.has("properties"));
         JSONObject geometry = result.getJSONObject("geometry");
-                assertNotNull(geometry);
+        assertNotNull(geometry);
         assertEquals("LineString", geometry.getString("type"));
         JSONArray coordinates = geometry.getJSONArray("coordinates");
         assertNotNull(coordinates);

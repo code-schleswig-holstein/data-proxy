@@ -3,13 +3,12 @@ package de.landsh.opendata.dataproxy;
 import de.landsh.opendata.coronardeck.CoronaDataLexer;
 import de.landsh.opendata.coronardeck.CoronaDataParser;
 import org.antlr.v4.runtime.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 /**
  * Unit test for simple CoronaData.

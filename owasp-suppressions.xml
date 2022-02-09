@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.2.xsd">
+  <suppress>
+    <notes>The GeneralHandler is not used. de.landsh.opendata.dataproxy.App handles GET requests directly.</notes>
+    <cve>CVE-2020-13697</cve>
+  </suppress>
+</suppressions>
